@@ -1,7 +1,11 @@
 package main
 
-import "urlShortner/service"
+import (
+	"urlShortner/config"
+	_ "urlShortner/config"
+	"urlShortner/service"
+)
 
 func main() {
-	service.Start()
+	service.Start(config.SetupParams.Port)
 }

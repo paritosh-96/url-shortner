@@ -2,7 +2,7 @@ package common
 
 import (
 	"container/list"
-	"urlShortner/constant"
+	"urlShortner/config"
 )
 
 var KeyCacheMap map[string]*LRUCache
@@ -24,9 +24,9 @@ func init() {
 
 func InitializeCache() *LRUCache {
 	return &LRUCache{
-		cap: constant.CACHE_CAPACITY,
+		cap: config.SetupParams.CacheCapacity,
 		l:   new(list.List),
-		m:   make(map[string]*list.Element, constant.CACHE_CAPACITY),
+		m:   make(map[string]*list.Element, config.SetupParams.CacheCapacity),
 	}
 }
 

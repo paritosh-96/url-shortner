@@ -3,6 +3,7 @@ package service
 import (
 	"fmt"
 	"github.com/gin-gonic/gin"
+	"strconv"
 )
 
 func corsMiddleWare() gin.HandlerFunc {
@@ -12,7 +13,7 @@ func corsMiddleWare() gin.HandlerFunc {
 	}
 }
 
-func Start() {
+func Start(port int) {
 	// Set the router as the default one shipped with Gin
 	router := gin.Default()
 
@@ -31,9 +32,11 @@ func Start() {
 		api.GET("/actualUrl", GetActualURL)
 		api.GET("/shortenUrl", ShortenURL)
 	}
-
+	if port < 999 {
+		port = 6080
+	}
+	var portString = ":" + strconv.Itoa(port)
 	// Start and run the server
-	router.Run(":6080")
-	fmt.Println("Server Started on port 6080")
+	router.Run(portString)
+	fmt.Println("Server Started on port :", strconv.Itoa(port))
 }
-

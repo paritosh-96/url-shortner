@@ -1,0 +1,6 @@
+{
+  "urlShortner": {
+    "port": 6080,
+    "cacheCapacity": 10
+  }
+}
